@@ -28,6 +28,7 @@ const Book = sequelize.define('book', {
   author: Sequelize.STRING,
   publication: Sequelize.STRING,
   year: Sequelize.INTEGER
+
 });
 
 // Join Table for Students and Books
@@ -48,7 +49,7 @@ const StudentBook = sequelize.define('student_book', {
   }
 });
 
-// Additional Table for Tracking Borrowing Details
+// Table for Tracking Borrowing Details
 const Library = sequelize.define('library', {
   startDate: Sequelize.DATE,
   endDate: Sequelize.DATE,
@@ -137,7 +138,6 @@ app.put('/students/:id', upload.fields([{ name: 'photo' }, { name: 'video' }]), 
       return res.status(404).json({ error: 'Student not found' });
     }
 
-    // Update student details
     await student.update({
       name: req.body.name || student.name,
       class: req.body.class || student.class,
